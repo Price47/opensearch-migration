@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.senacor.elasticsearch.evolution.core.ElasticsearchEvolution;
 
+
 @RestController
 public class MigrationController {
 
@@ -16,10 +17,8 @@ public class MigrationController {
 		RestClient restclient = RestClient.builder(HttpHost.create("http://localhost:9200")).build();
 		// then create a ElasticsearchEvolution configuration and create a instance of ElasticsearchEvolution with that configuration
 		ElasticsearchEvolution elasticsearchEvolution = ElasticsearchEvolution.configure().load(restclient);
-		// execute the migration
 		int migrationsRun = elasticsearchEvolution.migrate();
 		
 		return String.format("%d Migrations Run", migrationsRun);
 	}
-
 }
